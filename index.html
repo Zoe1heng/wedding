@@ -1,740 +1,1209 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation ★</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400&display=swap');
 
-  :root {
-    --bg: #0a0a0c;
-    --bg2: #111113;
-    --text: #e8e4df;
-    --accent: #c4a882;
-    --accent2: #8b7355;
-    --muted: #6b6560;
-    --silver: #b8b4af;
-    --dark-card: #141416;
-    --border: #2a2a2e;
-  }
+    :root {
+      --bg: #0a0a0c;
+      --text: #e8e4df;
+      --accent: #c4a882;
+      --accent2: #8b7355;
+      --muted: #6b6560;
+      --silver: #b8b4af;
+      --dark-card: #111113;
+      --border: #2a2a2e;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Noto Serif JP', serif;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* Noise */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-  }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Serif JP', serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* ===== VERTICAL DECO ===== */
-  .vert-deco {
-    position: fixed;
-    writing-mode: vertical-rl;
-    font-family: 'Noto Serif JP', serif;
-    font-size: 10px;
-    letter-spacing: 8px;
-    color: rgba(196,168,130,0.1);
-    font-weight: 200;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .vert-deco.left { left: 20px; top: 50%; transform: translateY(-50%); }
-  .vert-deco.right { right: 20px; top: 50%; transform: translateY(-50%); }
+    /* Scanlines */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.07) 2px, rgba(0, 0, 0, 0.07) 4px);
+      pointer-events: none;
+      z-index: 9998;
+    }
 
-  /* ===== REVEAL ===== */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 1s cubic-bezier(0.25,0.46,0.45,0.94), transform 1s cubic-bezier(0.25,0.46,0.45,0.94);
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal-delay-1 { transition-delay: 0.15s; }
-  .reveal-delay-2 { transition-delay: 0.3s; }
-  .reveal-delay-3 { transition-delay: 0.45s; }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes scaleFade {
-    from { opacity: 0; transform: scale(1.08); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  @keyframes lineGrow {
-    from { width: 0; }
-    to { width: 60px; }
-  }
+    .star {
+      position: absolute;
+      color: var(--accent);
+      font-size: 14px;
+      opacity: 0.4;
+      animation: twinkle 3s ease-in-out infinite;
+      pointer-events: none;
+    }
 
-  /* ===== HERO ===== */
-  .hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+    .star:nth-child(odd) {
+      animation-delay: 1.5s;
+    }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  .hero-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.3) contrast(1.1) grayscale(20%);
-    animation: scaleFade 2s ease forwards;
-  }
-  .hero-bg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,10,12,0.4) 0%, rgba(10,10,12,0.1) 40%, rgba(10,10,12,0.6) 80%, rgba(10,10,12,1) 100%);
-  }
+    @keyframes twinkle {
 
-  .hero-content {
-    position: relative;
-    z-index: 2;
-  }
+      0%,
+      100% {
+        opacity: 0.2;
+        transform: scale(0.8);
+      }
 
-  .hero-top {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 11px;
-    letter-spacing: 10px;
-    text-transform: uppercase;
-    color: rgba(196,168,130,0.7);
-    opacity: 0;
-    animation: fadeUp 1.2s ease 0.5s forwards;
-  }
+      50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+      }
+    }
 
-  .hero-kanji {
-    font-size: clamp(56px, 12vw, 120px);
-    font-weight: 200;
-    letter-spacing: 24px;
-    margin: 30px 0 0;
-    opacity: 0;
-    animation: fadeUp 1.2s ease 0.8s forwards;
-  }
+    .glitch {
+      position: relative;
+    }
 
-  .hero-line {
-    width: 0;
-    height: 1px;
-    background: var(--accent);
-    margin: 30px auto;
-    animation: lineGrow 1s ease 1.4s forwards;
-  }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-  .hero-names {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(24px, 4.5vw, 44px);
-    font-weight: 300;
-    font-style: italic;
-    letter-spacing: 6px;
-    color: var(--accent);
-    opacity: 0;
-    animation: fadeUp 1.2s ease 1.1s forwards;
-  }
-  .hero-names .amp {
-    font-style: normal;
-    color: var(--muted);
-    margin: 0 12px;
-    font-size: 0.7em;
-  }
+    .glitch::before {
+      color: rgba(196, 48, 48, 0.35);
+      animation: g1 4s infinite;
+      clip-path: inset(0 0 60% 0);
+    }
 
-  .hero-date {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    letter-spacing: 12px;
-    color: var(--muted);
-    margin-top: 40px;
-    opacity: 0;
-    animation: fadeUp 1.2s ease 1.6s forwards;
-  }
+    .glitch::after {
+      color: rgba(74, 106, 138, 0.35);
+      animation: g2 4s infinite;
+      clip-path: inset(40% 0 0 0);
+    }
 
-  .scroll-hint {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    opacity: 0;
-    animation: fadeUp 1s ease 2.2s forwards;
-  }
-  .scroll-hint span {
-    display: block;
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(180deg, var(--accent), transparent);
-    margin: 0 auto;
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-  @keyframes scrollPulse {
-    0%,100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
-  }
+    @keyframes g1 {
 
-  /* ===== SECTION 1: FULL-BLEED CINEMATIC ===== */
-  .cinema-full {
-    width: 100%;
-    height: 80vh;
-    min-height: 500px;
-    position: relative;
-    overflow: hidden;
-    margin: 60px 0;
-  }
-  .cinema-full img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(15%) contrast(1.05);
-    transition: transform 8s ease;
-  }
-  .cinema-full:hover img {
-    transform: scale(1.03);
-  }
-  .cinema-full .caption {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    font-style: italic;
-    letter-spacing: 6px;
-    color: rgba(232,228,223,0.6);
-    text-align: center;
-  }
-  .cinema-full::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,10,12,0.15) 0%, transparent 30%, transparent 60%, rgba(10,10,12,0.5) 100%);
-    pointer-events: none;
-  }
+      0%,
+      92%,
+      100% {
+        transform: translate(0);
+      }
 
-  /* ===== SECTION 2: EDITORIAL DIPTYCH ===== */
-  .diptych {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  .diptych .frame {
-    position: relative;
-    overflow: hidden;
-  }
-  .diptych .frame.tall {
-    aspect-ratio: 3/4;
-  }
-  .diptych .frame.wide {
-    aspect-ratio: 4/3;
-  }
-  .diptych .frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(15%) contrast(1.08);
-    transition: all 0.8s ease;
-  }
-  .diptych .frame:hover img {
-    filter: grayscale(0%) contrast(1.1);
-    transform: scale(1.02);
-  }
+      93% {
+        transform: translate(-3px, 1px);
+      }
 
-  /* ===== SECTION 3: ASYMMETRIC EDITORIAL ===== */
-  .editorial-asym {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 4px;
-    max-width: 1200px;
-    margin: 60px auto;
-    padding: 0 20px;
-    align-items: center;
-  }
-  .editorial-asym .hero-frame {
-    aspect-ratio: 3/4;
-    overflow: hidden;
-    position: relative;
-  }
-  .editorial-asym .hero-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(20%) contrast(1.05);
-    transition: all 0.8s ease;
-  }
-  .editorial-asym .hero-frame:hover img {
-    filter: grayscale(0%);
-  }
-  .editorial-asym .side-text {
-    padding: 60px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  .editorial-asym .side-text .quote {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(20px, 3vw, 32px);
-    font-style: italic;
-    font-weight: 400;
-    color: var(--accent);
-    line-height: 1.8;
-    letter-spacing: 2px;
-  }
-  .editorial-asym .side-text .quote-jp {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--silver);
-    letter-spacing: 4px;
-    line-height: 2.2;
-    margin-top: 24px;
-  }
+      96% {
+        transform: translate(2px, -1px);
+      }
+    }
 
-  /* ===== SECTION 4: TRIPTYCH ROW ===== */
-  .triptych {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
-    max-width: 1200px;
-    margin: 60px auto;
-    padding: 0 20px;
-  }
-  .triptych .tri-frame {
-    aspect-ratio: 3/4;
-    overflow: hidden;
-    position: relative;
-  }
-  .triptych .tri-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(20%) contrast(1.05);
-    transition: all 0.8s ease;
-  }
-  .triptych .tri-frame:hover img {
-    filter: grayscale(0%) contrast(1.1);
-    transform: scale(1.02);
-  }
+    @keyframes g2 {
 
-  /* ===== PHOTO SECTION LABELS ===== */
-  .section-divider {
-    text-align: center;
-    padding: 80px 20px;
-    position: relative;
-  }
-  .section-divider .num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 11px;
-    letter-spacing: 8px;
-    color: var(--accent2);
-    display: block;
-    margin-bottom: 16px;
-  }
-  .section-divider .label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(28px, 5vw, 42px);
-    font-weight: 300;
-    font-style: italic;
-    letter-spacing: 6px;
-    color: var(--text);
-  }
-  .section-divider::after {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 1px;
-    background: var(--accent);
-    margin: 30px auto 0;
-  }
+      0%,
+      90%,
+      100% {
+        transform: translate(0);
+      }
 
-  /* ===== DETAILS ===== */
-  .details-section {
-    padding: 80px 20px;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .detail-card {
-    border: 1px solid var(--border);
-    padding: 60px 40px;
-    margin-bottom: 2px;
-    position: relative;
-    background: var(--dark-card);
-  }
-  .detail-card::before {
-    content: attr(data-label);
-    position: absolute;
-    top: -8px; left: 40px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 10px;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: var(--dark-card);
-    padding: 0 12px;
-  }
-  .detail-main {
-    font-size: clamp(22px, 4vw, 32px);
-    font-weight: 300;
-    letter-spacing: 4px;
-    margin-bottom: 16px;
-  }
-  .detail-sub {
-    font-family: 'Zen Kaku Gothic New', sans-serif;
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--silver);
-    letter-spacing: 2px;
-    line-height: 2;
-  }
-  .detail-sub-en {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    font-style: italic;
-    color: var(--muted);
-    letter-spacing: 3px;
-    margin-top: 8px;
-  }
+      91% {
+        transform: translate(3px, -1px);
+      }
 
-  /* ===== TIMELINE ===== */
-  .timeline-section {
-    padding: 80px 20px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  .timeline-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 30px;
-    margin-bottom: 40px;
-    position: relative;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: 52px; top: 28px; bottom: -40px;
-    width: 1px;
-    background: var(--border);
-  }
-  .timeline-item:last-child::before { display: none; }
-  .timeline-time {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    letter-spacing: 3px;
-    color: var(--accent);
-    min-width: 80px;
-    text-align: right;
-    padding-top: 4px;
-  }
-  .timeline-dot {
-    width: 6px; height: 6px;
-    border: 1px solid var(--accent);
-    border-radius: 50%;
-    margin-top: 7px;
-    flex-shrink: 0;
-    background: var(--bg);
-    position: relative;
-    z-index: 1;
-  }
-  .timeline-content {
-    font-family: 'Zen Kaku Gothic New', sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--silver);
-    letter-spacing: 2px;
-    line-height: 1.8;
-  }
+      94% {
+        transform: translate(-2px, 2px);
+      }
+    }
 
-  /* ===== MESSAGE ===== */
-  .message-section {
-    padding: 100px 20px;
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .message-text {
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 2.4;
-    color: var(--silver);
-    letter-spacing: 2px;
-  }
-  .message-text p { margin-bottom: 24px; }
+    .side-vert {
+      position: fixed;
+      writing-mode: vertical-rl;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: rgba(196, 168, 130, 0.12);
+      pointer-events: none;
+      z-index: 2;
+    }
 
-  /* ===== RSVP ===== */
-  .rsvp-section {
-    padding: 80px 20px 120px;
-    text-align: center;
-  }
-  .rsvp-border {
-    display: inline-block;
-    border: 1px solid var(--border);
-    padding: 50px 80px;
-    position: relative;
-  }
-  .rsvp-border::before, .rsvp-border::after {
-    content: '';
-    position: absolute;
-    width: 14px; height: 14px;
-    border-color: var(--accent);
-    border-style: solid;
-  }
-  .rsvp-border::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
-  .rsvp-border::after { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
-  .rsvp-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 11px;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-  .rsvp-date {
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: 4px;
-  }
+    .side-vert.left {
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-  /* ===== FOOTER ===== */
-  .footer {
-    padding: 40px 20px;
-    text-align: center;
-    border-top: 1px solid var(--border);
-  }
-  .footer-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 12px;
-    letter-spacing: 6px;
-    color: var(--muted);
-  }
+    .side-vert.right {
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-  /* ===== PARALLAX-LIKE SPACER ===== */
-  .breath { height: 30px; }
+    .marquee-wrap {
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      position: relative;
+      z-index: 3;
+    }
 
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 768px) {
-    .diptych { grid-template-columns: 1fr; gap: 4px; }
-    .editorial-asym { grid-template-columns: 1fr; }
-    .editorial-asym .side-text { padding: 40px 20px; }
-    .triptych { grid-template-columns: 1fr 1fr; gap: 4px; }
-    .triptych .tri-frame:last-child { grid-column: span 2; aspect-ratio: 16/9; }
-    .cinema-full { height: 60vh; min-height: 350px; }
-    .vert-deco { display: none; }
-    .detail-card { padding: 50px 24px; }
-    .detail-card::before { left: 24px; }
-    .rsvp-border { padding: 40px 40px; }
-    .timeline-item { gap: 16px; }
-    .timeline-time { min-width: 60px; font-size: 12px; }
-  }
-  @media (max-width: 480px) {
-    .triptych { grid-template-columns: 1fr; }
-    .triptych .tri-frame { aspect-ratio: 4/3; }
-    .triptych .tri-frame:last-child { grid-column: span 1; aspect-ratio: 4/3; }
-  }
-</style>
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 25s linear infinite;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-style: italic;
+      letter-spacing: 8px;
+      color: var(--muted);
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleFade {
+      from {
+        opacity: 0;
+        transform: scale(1.1);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes lineGrow {
+      from {
+        width: 0;
+      }
+
+      to {
+        width: 80px;
+      }
+    }
+
+    @keyframes floatY {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.25) contrast(1.2) saturate(0.6);
+      animation: scaleFade 2.5s ease forwards;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10, 10, 12, 0.5) 0%, transparent 30%, transparent 50%, rgba(10, 10, 12, 0.8) 85%, var(--bg) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-scatter {
+      position: absolute;
+      font-size: clamp(60px, 15vw, 160px);
+      font-weight: 200;
+      color: rgba(232, 228, 223, 0.03);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-scatter.s1 {
+      top: 10%;
+      left: 5%;
+      transform: rotate(-12deg);
+    }
+
+    .hero-scatter.s2 {
+      bottom: 15%;
+      right: 5%;
+      transform: rotate(8deg);
+    }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 6px;
+      color: var(--accent);
+      border: 1px solid rgba(196, 168, 130, 0.3);
+      display: inline-block;
+      padding: 6px 20px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.3s forwards;
+    }
+
+    .hero-kanji {
+      font-size: clamp(60px, 14vw, 140px);
+      font-weight: 200;
+      letter-spacing: 16px;
+      margin: 20px 0;
+      opacity: 0;
+      animation: fadeUp 1.2s ease 0.6s forwards;
+    }
+
+    .hero-line {
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 20px auto;
+      animation: lineGrow 1.2s ease 1.2s forwards;
+    }
+
+    .hero-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 4.5vw, 42px);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 6px;
+      color: var(--accent);
+      opacity: 0;
+      animation: fadeUp 1.2s ease 0.9s forwards;
+    }
+
+    .hero-names .x {
+      font-family: 'DM Mono', monospace;
+      font-style: normal;
+      font-size: 0.5em;
+      color: var(--muted);
+      margin: 0 16px;
+      vertical-align: middle;
+    }
+
+    .hero-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 8px;
+      color: var(--muted);
+      margin-top: 30px;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.5s forwards;
+    }
+
+    .hero-date span {
+      color: var(--accent);
+    }
+
+    .scroll-arrow {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      opacity: 0;
+      animation: fadeUp 1s ease 2s forwards;
+    }
+
+    .scroll-arrow span {
+      display: block;
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+      margin: 0 auto;
+      animation: floatY 2.5s ease-in-out infinite;
+    }
+
+    .scroll-arrow::after {
+      content: 'scroll';
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 4px;
+      color: var(--muted);
+      display: block;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* COLLAGE OVERLAP */
+    .collage-overlap {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .collage-overlap .c-main {
+      width: 55%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+      border: 1px solid rgba(196, 168, 130, 0.2);
+    }
+
+    .collage-overlap .c-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(10%) contrast(1.1);
+      transition: filter 0.6s;
+    }
+
+    .collage-overlap .c-main:hover img {
+      filter: grayscale(0%) contrast(1.15);
+    }
+
+    .collage-overlap .c-float {
+      position: absolute;
+      overflow: hidden;
+      border: 1px solid rgba(196, 168, 130, 0.15);
+      z-index: 3;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .collage-overlap .c-float img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(15%) contrast(1.05);
+      transition: filter 0.6s, transform 0.6s;
+    }
+
+    .collage-overlap .c-float:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.03);
+    }
+
+    .collage-overlap .c-f1 {
+      width: 35%;
+      aspect-ratio: 4/3;
+      top: 5%;
+      right: 3%;
+      transform: rotate(2deg);
+    }
+
+    .collage-overlap .c-f2 {
+      width: 30%;
+      aspect-ratio: 1;
+      bottom: 8%;
+      left: 3%;
+      transform: rotate(-3deg);
+    }
+
+    .collage-overlap .c-label {
+      position: absolute;
+      z-index: 5;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      background: rgba(10, 10, 12, 0.8);
+      padding: 4px 12px;
+      border: 1px solid rgba(196, 168, 130, 0.2);
+    }
+
+    .collage-overlap .c-label.l1 {
+      bottom: 15%;
+      right: 8%;
+    }
+
+    .collage-overlap .c-label.l2 {
+      top: 8%;
+      left: 8%;
+    }
+
+    .corner-deco {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-color: rgba(196, 168, 130, 0.2);
+      border-style: solid;
+      pointer-events: none;
+      z-index: 6;
+    }
+
+    .corner-deco.tl {
+      top: 20px;
+      left: 20px;
+      border-width: 1px 0 0 1px;
+    }
+
+    .corner-deco.tr {
+      top: 20px;
+      right: 20px;
+      border-width: 1px 1px 0 0;
+    }
+
+    .corner-deco.bl {
+      bottom: 20px;
+      left: 20px;
+      border-width: 0 0 1px 1px;
+    }
+
+    .corner-deco.br {
+      bottom: 20px;
+      right: 20px;
+      border-width: 0 1px 1px 0;
+    }
+
+    /* FILM STRIP */
+    .cinema-strip {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      margin: 40px 0;
+    }
+
+    .cinema-strip .strip-inner {
+      display: flex;
+      gap: 4px;
+    }
+
+    .cinema-strip .strip-frame {
+      flex: 1;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cinema-strip .strip-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(25%) contrast(1.1) brightness(0.95);
+      transition: all 0.8s;
+    }
+
+    .cinema-strip .strip-frame:hover img {
+      filter: grayscale(0%) contrast(1.15);
+      transform: scale(1.02);
+    }
+
+    .cinema-strip::before,
+    .cinema-strip::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 20px;
+      z-index: 4;
+      background: repeating-linear-gradient(90deg, transparent 0px, transparent 30px, rgba(196, 168, 130, 0.08) 30px, rgba(196, 168, 130, 0.08) 40px, transparent 40px, transparent 60px);
+    }
+
+    .cinema-strip::before {
+      top: 0;
+    }
+
+    .cinema-strip::after {
+      bottom: 0;
+    }
+
+    /* POLAROID + QUOTE */
+    .collage-stack {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 60px 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .collage-stack .stack-photo {
+      flex: 1;
+      position: relative;
+    }
+
+    .collage-stack .stack-photo .frame-outer {
+      position: relative;
+      padding: 12px;
+      background: rgba(20, 20, 22, 0.8);
+      border: 1px solid rgba(196, 168, 130, 0.1);
+      transform: rotate(-1.5deg);
+      transition: transform 0.6s;
+    }
+
+    .collage-stack .stack-photo .frame-outer:hover {
+      transform: rotate(0deg);
+    }
+
+    .collage-stack .stack-photo .frame-outer img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(10%) contrast(1.08);
+    }
+
+    .collage-stack .stack-photo .frame-outer:hover img {
+      filter: grayscale(0%);
+    }
+
+    .collage-stack .stack-photo .photo-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .collage-stack .stack-text {
+      flex: 0.8;
+      text-align: center;
+    }
+
+    .collage-stack .stack-text .big-kanji {
+      font-size: clamp(50px, 10vw, 90px);
+      font-weight: 200;
+      color: rgba(232, 228, 223, 0.06);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .collage-stack .stack-text .quote-en {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 3vw, 28px);
+      font-style: italic;
+      color: var(--accent);
+      line-height: 1.8;
+      letter-spacing: 2px;
+    }
+
+    .collage-stack .stack-text .quote-jp {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--silver);
+      letter-spacing: 3px;
+      line-height: 2;
+      margin-top: 16px;
+    }
+
+    .collage-stack .stack-text .dash {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 20px auto;
+    }
+
+    /* FULL HERO PHOTO */
+    .hero-photo {
+      width: 100%;
+      height: 75vh;
+      min-height: 400px;
+      position: relative;
+      overflow: hidden;
+      margin: 40px 0;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(20%) contrast(1.1) brightness(0.9);
+      transition: transform 10s ease;
+    }
+
+    .hero-photo:hover img {
+      transform: scale(1.04);
+    }
+
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, var(--bg) 0%, transparent 15%, transparent 75%, var(--bg) 100%);
+      pointer-events: none;
+    }
+
+    .hero-photo .photo-caption {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-photo .photo-caption .cap-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-style: italic;
+      letter-spacing: 8px;
+      color: rgba(232, 228, 223, 0.5);
+    }
+
+    .hero-photo .photo-caption .cap-jp {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      color: rgba(196, 168, 130, 0.4);
+      margin-top: 6px;
+    }
+
+    .mono-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 5px;
+      color: var(--muted);
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    /* SECTION DIVIDER */
+    .section-div {
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+
+    .section-div .num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 6px;
+      color: var(--accent2);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .section-div .label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 8px;
+      color: var(--text);
+    }
+
+    .section-div .sub-label {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .section-div::after {
+      content: '✦';
+      display: block;
+      color: var(--accent);
+      font-size: 10px;
+      margin-top: 24px;
+      opacity: 0.5;
+    }
+
+    /* DETAILS */
+    .details-section {
+      padding: 40px 20px 80px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .detail-card {
+      border: 1px solid var(--border);
+      padding: 60px 40px;
+      margin-bottom: 2px;
+      position: relative;
+      background: var(--dark-card);
+    }
+
+    .detail-card::before {
+      content: attr(data-label);
+      position: absolute;
+      top: -8px;
+      left: 40px;
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--dark-card);
+      padding: 0 12px;
+    }
+
+    .detail-main {
+      font-size: clamp(20px, 4vw, 30px);
+      font-weight: 300;
+      letter-spacing: 4px;
+      margin-bottom: 14px;
+    }
+
+    .detail-sub {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--silver);
+      letter-spacing: 2px;
+      line-height: 2;
+    }
+
+    .detail-sub-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: 3px;
+      margin-top: 8px;
+    }
+
+    /* TIMELINE */
+    .timeline-section {
+      padding: 40px 20px 80px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: 36px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 52px;
+      top: 24px;
+      bottom: -36px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-item:last-child::before {
+      display: none;
+    }
+
+    .timeline-time {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--accent);
+      min-width: 70px;
+      text-align: right;
+      padding-top: 3px;
+    }
+
+    .timeline-dot {
+      width: 6px;
+      height: 6px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+      background: var(--bg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-content {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--silver);
+      letter-spacing: 2px;
+    }
+
+    /* MESSAGE */
+    .message-section {
+      padding: 80px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .message-text {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 2.4;
+      color: var(--silver);
+      letter-spacing: 2px;
+    }
+
+    .message-text p {
+      margin-bottom: 24px;
+    }
+
+    /* RSVP */
+    .rsvp-section {
+      padding: 60px 20px 100px;
+      text-align: center;
+    }
+
+    .rsvp-box {
+      display: inline-block;
+      border: 1px solid var(--border);
+      padding: 50px 80px;
+      position: relative;
+    }
+
+    .rsvp-box::before,
+    .rsvp-box::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: var(--accent);
+      border-style: solid;
+    }
+
+    .rsvp-box::before {
+      top: -1px;
+      left: -1px;
+      border-width: 1px 0 0 1px;
+    }
+
+    .rsvp-box::after {
+      bottom: -1px;
+      right: -1px;
+      border-width: 0 1px 1px 0;
+    }
+
+    .rsvp-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 8px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .rsvp-date {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: 4px;
+    }
+
+    .footer {
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 6px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      .collage-overlap .c-main {
+        width: 70%;
+      }
+
+      .collage-overlap .c-f1 {
+        width: 45%;
+        top: 2%;
+        right: 0;
+      }
+
+      .collage-overlap .c-f2 {
+        width: 38%;
+        bottom: 3%;
+        left: 0;
+      }
+
+      .collage-stack {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .collage-stack .stack-text {
+        order: -1;
+      }
+
+      .collage-stack .stack-photo .frame-outer {
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      .hero-photo {
+        height: 55vh;
+      }
+
+      .side-vert,
+      .hero-scatter {
+        display: none;
+      }
+
+      .detail-card {
+        padding: 50px 24px;
+      }
+
+      .detail-card::before {
+        left: 24px;
+      }
+
+      .rsvp-box {
+        padding: 40px 40px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="vert-deco left">結婚式のご案内</div>
-<div class="vert-deco right">永遠の誓い</div>
+  <div class="side-vert left">20XX.XX.XX ── WEDDING ── 結婚式</div>
+  <div class="side-vert right">★ FOREVER ★ 永遠に ★ ALWAYS ★</div>
 
-<!-- ===== HERO: Photo 5 (fine dining, heart above heads) as bg ===== -->
-<section class="hero">
-  <div class="hero-bg">
-    <img src="images/fine-dining-heart.jpg" alt="hero">
-  </div>
-  <div class="hero-content">
-    <div class="hero-top">Wedding Invitation</div>
-    <div class="hero-kanji">結婚式</div>
-    <div class="hero-line"></div>
-    <div class="hero-names">
-      Groom <span class="amp">&</span> Bride
+  <section class="hero">
+    <div class="hero-bg"><img src="images/fine-dining-heart.jpg" alt=""></div>
+    <div class="hero-scatter s1">愛</div>
+    <div class="hero-scatter s2">誓</div>
+    <div class="hero-content">
+      <div class="hero-tag">★ WEDDING INVITATION ★</div>
+      <div class="hero-kanji glitch" data-text="結婚式">結婚式</div>
+      <div class="hero-line"></div>
+      <div class="hero-names">Groom <span class="x">×</span> Bride</div>
+      <div class="hero-date"><span>20XX</span> . XX . XX</div>
     </div>
-    <div class="hero-date">2 0 2 5 . 0 0 . 0 0</div>
+    <div class="scroll-arrow"><span></span></div>
+  </section>
+
+  <div class="marquee-wrap">
+    <div class="marquee-inner">★ LOVE ★ 愛 ★ FOREVER ★ 永遠に ★ WEDDING ★ 結婚 ★ HAPPINESS ★ 幸せ ★ TOGETHER ★ 二人で ★ LOVE ★ 愛 ★
+      FOREVER ★ 永遠に ★ WEDDING ★ 結婚 ★ HAPPINESS ★ 幸せ ★ TOGETHER ★ 二人で ★&nbsp;&nbsp;&nbsp;&nbsp;</div>
   </div>
-  <div class="scroll-hint"><span></span></div>
-</section>
 
-<!-- ===== GALLERY LABEL ===== -->
-<div class="section-divider reveal">
-  <span class="num">— 01 —</span>
-  <div class="label">Our Story</div>
-</div>
-
-<!-- ===== LAYOUT 1: FULL-BLEED CINEMATIC — Night walk ===== -->
-<div class="cinema-full reveal">
-  <img src="images/night-walk.jpg" alt="night walk">
-  <div class="caption">the night we walked together</div>
-</div>
-
-<div class="breath"></div>
-
-<!-- ===== LAYOUT 2: DIPTYCH — Restaurant + Fine dining ===== -->
-<div class="diptych">
-  <div class="frame tall reveal">
-    <img src="images/restaurant-selfie.jpg" alt="restaurant">
+  <div class="section-div reveal">
+    <span class="num">001</span>
+    <div class="label">Our Story</div>
+    <div class="sub-label">ふたりの物語</div>
   </div>
-  <div class="frame tall reveal reveal-delay-1">
-    <img src="images/photo-booth.jpg" alt="photo booth">
-  </div>
-</div>
 
-<div class="breath"></div>
-
-<!-- ===== LAYOUT 3: ASYMMETRIC EDITORIAL — Heart photo + quote ===== -->
-<div class="editorial-asym">
-  <div class="hero-frame reveal">
-    <img src="images/heart-hands.jpg" alt="heart hands">
+  <div class="collage-overlap reveal">
+    <div class="corner-deco tl"></div>
+    <div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div>
+    <div class="corner-deco br"></div>
+    <div class="c-main"><img src="images/photo-booth.jpg" alt=""></div>
+    <div class="c-float c-f1"><img src="images/restaurant-selfie.jpg" alt=""></div>
+    <div class="c-float c-f2"><img src="images/heart-hands.jpg" alt=""></div>
+    <div class="c-label l1">PHOTO_001</div>
+    <div class="c-label l2">★ US</div>
   </div>
-  <div class="side-text reveal reveal-delay-1">
-    <div class="quote">
-      Two hearts,<br>one promise
-    </div>
-    <div class="quote-jp">
-      ふたつの心が<br>ひとつの約束になる
+
+  <div class="mono-label reveal">— FILM_STRIP.RAW —</div>
+
+  <div class="cinema-strip reveal">
+    <div class="strip-inner">
+      <div class="strip-frame"><img src="images/heart-hands.jpg" alt=""></div>
+      <div class="strip-frame"><img src="images/fine-dining-heart.jpg" alt=""></div>
+      <div class="strip-frame"><img src="images/fine-dining-table.jpg" alt=""></div>
     </div>
   </div>
-</div>
 
-<div class="breath"></div>
-
-<!-- ===== LAYOUT 4: TRIPTYCH — Three moments ===== -->
-<div class="section-divider reveal">
-  <span class="num">— 02 —</span>
-  <div class="label">Moments</div>
-</div>
-
-<div class="triptych">
-  <div class="tri-frame reveal">
-    <img src="images/fine-dining-heart.jpg" alt="fine dining 1">
-  </div>
-  <div class="tri-frame reveal reveal-delay-1">
-    <img src="images/fine-dining-table.jpg" alt="fine dining 2">
-  </div>
-  <div class="tri-frame reveal reveal-delay-2">
-    <img src="images/heart-hands.jpg" alt="heart hands 2">
-  </div>
-</div>
-
-<!-- ===== CLOSING FULL-BLEED ===== -->
-<div class="cinema-full reveal" style="margin-top:80px;">
-  <img src="images/fine-dining-table.jpg" alt="closing">
-  <div class="caption">forever begins here</div>
-</div>
-
-<!-- ===== DETAILS ===== -->
-<section class="details-section">
-  <div class="section-divider reveal" style="padding-top:40px;">
-    <span class="num">— 03 —</span>
-    <div class="label">Details</div>
+  <div class="section-div reveal">
+    <span class="num">002</span>
+    <div class="label">Moments</div>
+    <div class="sub-label">思い出</div>
   </div>
 
-  <div class="detail-card reveal" data-label="Date">
-    <div class="detail-main">二〇二五年 〇月〇日</div>
-    <div class="detail-sub">（ 曜日 ）</div>
-    <div class="detail-sub-en">Month 00, 2025</div>
+  <div class="collage-stack reveal">
+    <div class="stack-photo">
+      <div class="frame-outer"><img src="images/restaurant-selfie.jpg" alt=""></div>
+      <div class="photo-note">SCAN_002 ★ FAVORITE</div>
+    </div>
+    <div class="stack-text">
+      <div class="big-kanji">永遠</div>
+      <div class="quote-en">Two hearts,<br>one forever</div>
+      <div class="dash"></div>
+      <div class="quote-jp">ふたつの心が<br>ひとつの永遠になる</div>
+    </div>
   </div>
-  <div class="detail-card reveal" data-label="Ceremony">
-    <div class="detail-main">挙式 00:00</div>
-    <div class="detail-sub">受付開始 00:00</div>
-  </div>
-  <div class="detail-card reveal" data-label="Venue">
-    <div class="detail-main">会場名</div>
-    <div class="detail-sub">〒000-0000<br>住所をここに記載</div>
-    <div class="detail-sub-en">Venue Name</div>
-  </div>
-</section>
 
-<!-- ===== TIMELINE ===== -->
-<section class="timeline-section">
-  <div class="section-divider reveal" style="padding:40px 0 50px;">
-    <span class="num">— 04 —</span>
-    <div class="label">Schedule</div>
+  <div class="hero-photo reveal">
+    <img src="images/night-walk.jpg" alt="">
+    <div class="photo-caption">
+      <div class="cap-en">the night we knew</div>
+      <div class="cap-jp">あの夜、確かめた</div>
+    </div>
   </div>
-  <div class="timeline-item reveal">
-    <div class="timeline-time">00:00</div>
-    <div class="timeline-dot"></div>
-    <div class="timeline-content">受付開始</div>
-  </div>
-  <div class="timeline-item reveal">
-    <div class="timeline-time">00:00</div>
-    <div class="timeline-dot"></div>
-    <div class="timeline-content">挙式</div>
-  </div>
-  <div class="timeline-item reveal">
-    <div class="timeline-time">00:00</div>
-    <div class="timeline-dot"></div>
-    <div class="timeline-content">披露宴</div>
-  </div>
-  <div class="timeline-item reveal">
-    <div class="timeline-time">00:00</div>
-    <div class="timeline-dot"></div>
-    <div class="timeline-content">お開き</div>
-  </div>
-</section>
 
-<!-- ===== MESSAGE ===== -->
-<section class="message-section reveal">
-  <div class="section-divider" style="padding:0 0 40px;">
-    <span class="num">— 05 —</span>
-    <div class="label">Message</div>
+  <div class="marquee-wrap">
+    <div class="marquee-inner">✦ 挙式のご案内 ✦ CEREMONY DETAILS ✦ 挙式のご案内 ✦ CEREMONY DETAILS ✦ 挙式のご案内 ✦ CEREMONY DETAILS ✦
+      挙式のご案内 ✦ CEREMONY DETAILS ✦&nbsp;&nbsp;&nbsp;&nbsp;</div>
   </div>
-  <div class="message-text">
-    <p>私たちの大切な日に<br>皆様のお立ち会いを<br>心よりお願い申し上げます</p>
-    <p>ふたりの新しい門出を<br>あたたかく見守っていただければ<br>幸いです</p>
-  </div>
-</section>
 
-<!-- ===== RSVP ===== -->
-<section class="rsvp-section reveal">
-  <div class="rsvp-border">
-    <div class="rsvp-label">R.S.V.P.</div>
-    <div class="rsvp-date">〇月〇日まで</div>
-  </div>
-</section>
+  <section class="details-section">
+    <div class="section-div reveal" style="padding-top:20px;">
+      <span class="num">003</span>
+      <div class="label">Details</div>
+      <div class="sub-label">挙式のご案内</div>
+    </div>
+    <div class="detail-card reveal" data-label="DATE">
+      <div class="detail-main">二〇二五年 〇月〇日</div>
+      <div class="detail-sub">（ 曜日 ）</div>
+      <div class="detail-sub-en">Month 00, 2025</div>
+    </div>
+    <div class="detail-card reveal" data-label="CEREMONY">
+      <div class="detail-main">挙式 00:00</div>
+      <div class="detail-sub">受付開始 00:00</div>
+    </div>
+    <div class="detail-card reveal" data-label="VENUE">
+      <div class="detail-main">会場名</div>
+      <div class="detail-sub">〒000-0000<br>住所をここに記載</div>
+      <div class="detail-sub-en">Venue Name</div>
+    </div>
+  </section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="footer-text">With Love</div>
-</footer>
+  <section class="timeline-section">
+    <div class="section-div reveal" style="padding:20px 0 40px;">
+      <span class="num">004</span>
+      <div class="label">Schedule</div>
+      <div class="sub-label">当日の流れ</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-time">00:00</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">受付開始</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-time">00:00</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">挙式</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-time">00:00</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">披露宴</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-time">00:00</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">お開き</div>
+    </div>
+  </section>
 
-<script>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
-</script>
+  <section class="message-section reveal">
+    <div class="section-div" style="padding:0 0 40px;">
+      <span class="num">005</span>
+      <div class="label">Message</div>
+      <div class="sub-label">ご挨拶</div>
+    </div>
+    <div class="message-text">
+      <p>私たちの大切な日に<br>皆様のお立ち会いを<br>心よりお願い申し上げます</p>
+      <p>ふたりの新しい門出を<br>あたたかく見守っていただければ<br>幸いです</p>
+    </div>
+  </section>
+
+  <section class="rsvp-section reveal">
+    <div class="rsvp-box">
+      <div class="rsvp-label">R.S.V.P.</div>
+      <div class="rsvp-date">〇月〇日まで</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-text">★ WITH LOVE ★ FOREVER ★</div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    function addStars() {
+      document.querySelectorAll('.collage-overlap, .collage-stack, .hero').forEach(sec => {
+        for (let i = 0; i < 5; i++) {
+          const s = document.createElement('div');
+          s.className = 'star';
+          s.textContent = ['✦', '★', '✧', '·'][Math.floor(Math.random() * 4)];
+          s.style.cssText = `top:${Math.random() * 100}%;left:${Math.random() * 100}%;animation-duration:${2 + Math.random() * 3}s;animation-delay:${Math.random() * 2}s;font-size:${8 + Math.random() * 10}px`;
+          sec.appendChild(s);
+        }
+      });
+    }
+    addStars();
+  </script>
 
 </body>
+
 </html>
